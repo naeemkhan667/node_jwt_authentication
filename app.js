@@ -7,8 +7,17 @@ app.get('/', (req, res) => {
     res.json('Welcome to API');
 });
 
-app.post('/api/posts', (req, res) => {
-    res.json({ message: 'post created' });
+app.post('/api/posts', verifyToken, (req, res) => {
+
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            res.json({ message: 'post created', authData });
+        }
+
+    });
+    
 });
 
 app.post('/api/login', (req, res) => {
@@ -17,11 +26,27 @@ app.post('/api/login', (req, res) => {
         user: 'naeem',
         email: 'naeem@gmail.com'
     };
-    jwt.sign({user: user}, 'secretkey', (err, token) => {
-        res.json({token: token})
+    jwt.sign({ user: user }, 'secretkey', (err, token) => {
+        res.json({ token: token })
 
     });
 });
+
+//Verify token middleware function
+//const verifyToken = (req, res, next) => {
+function verifyToken(req, res, next) {
+    //Get the auth header value
+    //console.log(req.headers);
+    const bearerHeader = req.headers['authorization'];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(' ');
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        return res.sendStatus(403);
+    }
+}
 
 app.listen(5000, () => {
     console.log('Server running on port 5000');
