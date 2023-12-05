@@ -1,8 +1,17 @@
 # node_jwt_authentication
 
 #Videos tutorials for JWT
-https://www.youtube.com/watch?v=7nafaH9SddU&t=273s
-https://github.com/gitdagray/nodejs_jwt_auth/tree/main
+https://www.youtube.com/watch?v=7nafaH9SddU&t=273s [Quick explanation]
+
+https://www.youtube.com/watch?v=XBRLVRjZ3CQ&list=PL0Zuz27SZ-6PrE9srvEn8nbhOOyxnWXfp&index=30 [Detailed explanation]
+https://github.com/gitdagray/nodejs_jwt_auth/tree/main [Detailed explanation repo]
+
+
+#Node Passport
+https://www.youtube.com/watch?v=Z1ktxiqyiLA&list=PLillGF-RfqbbqvbObyE7CldS5-trkefnB
+
+
+
 
 
 #JWT Token documentation
